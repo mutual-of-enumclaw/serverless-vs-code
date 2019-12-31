@@ -2,7 +2,7 @@
 	"name": "serverless-vs-code",
 	"displayName": "Serverless VS Code",
 	"description": "Allows exploration and debugging of serverless functions",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"publisher": "MutualOfEnumclaw",
 	"icon": "media/serverless-icon.png",
 	"repository": {
