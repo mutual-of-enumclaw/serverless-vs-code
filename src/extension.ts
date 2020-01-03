@@ -97,15 +97,18 @@ async function debugTest(element: TreePart) {
 		return;
 	}
 	let dataString = JSON.stringify(testData);
-
-	const args = ['invoke', 'local', '--function', element.functionName, '--data', dataString];
+	writeFileSync(element.workspace.uri.fsPath + '/.vscode/serverless.test.json', dataString);
+	
 	let serverlessFileDirPath = '${workspaceFolder}/' + element.yml.path;
 	serverlessFileDirPath = serverlessFileDirPath.substr(0, serverlessFileDirPath.lastIndexOf('/'));
 
+	const dataPath = serverlessFileDirPath.split('/').splice(0, 1).map(x => '../').join('') + '.vscode/serverless.test.json'
+	const args = ['invoke', 'local', '--function', element.functionName, '--path', dataPath];
+	
     const debugConfiguration: vscode.DebugConfiguration = {
       args,
 	  console: 'internalConsole',
-      cwd: serverlessFileDirPath,
+	  cwd: serverlessFileDirPath,
       internalConsoleOptions: "neverOpen",
       name: "vscode-serverless-adapter",
       program: serverlessPath,
