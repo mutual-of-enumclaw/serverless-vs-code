@@ -102,7 +102,7 @@ async function debugTest(element: TreePart) {
 	let serverlessFileDirPath = '${workspaceFolder}/' + element.yml.path;
 	serverlessFileDirPath = serverlessFileDirPath.substr(0, serverlessFileDirPath.lastIndexOf('/'));
 
-	const dataPath = serverlessFileDirPath.split('/').splice(0, 1).map(x => '../').join('') + '.vscode/serverless.test.json'
+	const dataPath = serverlessFileDirPath.split('/').splice(1, 1).map(x => '../').splice(0, 1).join('') + '.vscode/serverless.test.json'
 	const args = ['invoke', 'local', '--function', element.functionName, '--path', dataPath];
 	
     const debugConfiguration: vscode.DebugConfiguration = {
